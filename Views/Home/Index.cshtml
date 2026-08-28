@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="dashboard-hero">
+    <h1>Olá, @ViewBag.NomeUsuario</h1>
+    <p>Bem-vindo ao AgendaUVV — aqui está o resumo das suas consultas.</p>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card p-4 text-center">
+            <h2>@ViewBag.TotalConsultas</h2>
+            <p class="text-muted mb-0">Consultas cadastradas</p>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card p-4 h-100 d-flex flex-column justify-content-center align-items-center">
+            <p class="mb-3">Gerencie suas consultas agendadas</p>
+            <a asp-controller="Consultas" asp-action="Index" class="btn btn-primary">Ver Minhas Consultas</a>
+        </div>
+    </div>
+</div>
+
+<div class="card p-4">
+    <h5 class="mb-3">Próximas consultas</h5>
+
+    @{
+        var proximas = ViewBag.ProximasConsultas as List<AgendaUVV.Models.Consulta>;
+    }
+
+    @if (proximas == null || !proximas.Any())
+    {
+        <p class="text-muted">Nenhuma consulta futura cadastrada.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Especialidade</th>
+                    <th>Data/Hora</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in proximas)
+                {
+                    <tr>
+                        <td>@c.Especialidade</td>
+                        <td>@c.DataHora.ToString("dd/MM/yyyy HH:mm")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
