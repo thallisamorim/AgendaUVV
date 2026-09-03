@@ -6,12 +6,18 @@ Aplicação Web desenvolvida em C# com ASP.NET Core MVC para gerenciamento de us
 
 Trabalho acadêmico desenvolvido para a disciplina de Desenvolvimento Web Back-end.
 
+## 🌐 Aplicação publicada
+
+🔗 Acesse o sistema em produção: https://agendauvv-thallis-fcgqcqfwfmfzf2ct.westus3-01.azurewebsites.net
+
 ## 🎯 Funcionalidades
 
 - Cadastro de usuário (com validação de dados e senha criptografada)
 - Login e logout com autenticação baseada em Cookie
 - Dashboard com resumo das próximas consultas do usuário logado
 - CRUD completo de consultas (criar, listar, editar, excluir), restrito ao usuário autenticado
+- Seleção de especialidade médica por lista suspensa (20 especialidades pré-cadastradas)
+- Seleção de data e hora por calendário visual, sempre no formato brasileiro (dd/mm/aaaa, 24h), independente da configuração do computador do usuário
 - Proteção de rotas: um usuário nunca acessa, edita ou exclui consultas de outro usuário, mesmo digitando a URL manualmente
 
 ## 🛠️ Tecnologias utilizadas
@@ -19,11 +25,13 @@ Trabalho acadêmico desenvolvido para a disciplina de Desenvolvimento Web Back-e
 - C# / .NET SDK 10.0.400
 - ASP.NET Core MVC
 - Entity Framework Core (Code First) com Microsoft.EntityFrameworkCore.SqlServer
-- SQL Server 2025
-- ASP.NET Core Cookie Authentication + PasswordHasher<T> para hash de senha
+- SQL Server 2025 (local) / Azure SQL Database (produção)
+- Azure App Service (hospedagem)
+- ASP.NET Core Cookie Authentication + PasswordHasher para hash de senha
 - Bootstrap 5.3.3
 - jQuery + jQuery Validation (validação client-side)
-- Git / GitHub
+- Flatpickr (calendário com formato de data/hora brasileiro)
+- Git / GitHub / GitHub Actions (deploy contínuo)
 
 ## 🏗️ Estrutura do projeto
 
@@ -65,7 +73,7 @@ AgendaUVV/
 
 ## 🗄️ Banco de dados
 
-O projeto utiliza SQL Server, acessado via Entity Framework Core (abordagem Code First).
+O projeto utiliza SQL Server, acessado via Entity Framework Core (abordagem Code First). Em produção, é utilizado o Azure SQL Database.
 
 ### Entidades
 
@@ -95,7 +103,7 @@ Para executar o projeto localmente é necessário ter instalado:
 dotnet tool install --global dotnet-ef
 
 
-## 🚀 Como executar o projeto
+## 🚀 Como executar o projeto localmente
 
 **1. Clonar o repositório**
 
@@ -132,6 +140,8 @@ dotnet run
 
 Acesse no navegador o endereço exibido no terminal (geralmente algo como `https://localhost:7xxx`).
 
+> Alternativamente, você pode acessar diretamente a versão publicada em produção, sem precisar instalar nada: https://agendauvv-thallis-fcgqcqfwfmfzf2ct.westus3-01.azurewebsites.net
+
 ## 🔐 Segurança
 
 - Autenticação via **Cookie Authentication** nativo do ASP.NET Core
@@ -140,6 +150,7 @@ Acesse no navegador o endereço exibido no terminal (geralmente algo como `https
 - Ordem correta do pipeline de middleware: `app.UseAuthentication()` antes de `app.UseAuthorization()`
 - Toda consulta ao banco de uma Consulta específica (detalhes, edição, exclusão) filtra simultaneamente por `Id` e `UsuarioId` do usuário logado, impedindo que um usuário acesse, edite ou exclua consultas de outro usuário mesmo manipulando a URL manualmente
 - Validação de dados no servidor com Data Annotations (`[Required]`, `[EmailAddress]`, `[StringLength]`, `[Compare]`) em todos os formulários
+- Credenciais de banco de dados de produção configuradas diretamente no Azure App Service, nunca expostas no repositório
 
 ## 🧪 Testes realizados
 
@@ -173,5 +184,3 @@ Projeto desenvolvido para a disciplina de **Desenvolvimento Web Back-end**, do c
 ## 📄 Licença
 
 Projeto desenvolvido exclusivamente para fins acadêmicos.
-
-
