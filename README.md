@@ -35,42 +35,42 @@ Trabalho acadêmico desenvolvido para a disciplina de Desenvolvimento Web Back-e
 
 ## 🏗️ Estrutura do projeto
 
+```
 AgendaUVV/
 │
 ├── Controllers/
-│ ├── HomeController.cs
-│ ├── AccountController.cs
-│ └── ConsultasController.cs
+│   ├── HomeController.cs
+│   ├── AccountController.cs
+│   └── ConsultasController.cs
 │
 ├── Models/
-│ ├── Usuario.cs
-│ ├── Consulta.cs
-│ └── ErrorViewModel.cs
+│   ├── Usuario.cs
+│   ├── Consulta.cs
+│   └── ErrorViewModel.cs
 │
 ├── ViewModels/
-│ ├── RegisterViewModel.cs
-│ ├── LoginViewModel.cs
-│ └── ConsultaViewModel.cs
+│   ├── RegisterViewModel.cs
+│   ├── LoginViewModel.cs
+│   └── ConsultaViewModel.cs
 │
 ├── Data/
-│ └── AppDbContext.cs
+│   └── AppDbContext.cs
 │
 ├── Views/
-│ ├── Home/
-│ ├── Account/
-│ ├── Consultas/
-│ └── Shared/
+│   ├── Home/
+│   ├── Account/
+│   ├── Consultas/
+│   └── Shared/
 │
 ├── wwwroot/
-│ └── css/site.css
+│   └── css/site.css
 │
 ├── Migrations/
 │
 ├── Program.cs
 ├── appsettings.json
 └── README.md
-
-
+```
 ## 🗄️ Banco de dados
 
 O projeto utiliza SQL Server, acessado via Entity Framework Core (abordagem Code First). Em produção, é utilizado o Azure SQL Database.
