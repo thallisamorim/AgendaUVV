@@ -13,13 +13,35 @@
 
         <div class="mb-3">
             <label asp-for="Especialidade" class="form-label"></label>
-            <input asp-for="Especialidade" class="form-control" />
+            <select asp-for="Especialidade" class="form-select">
+                <option value="">Selecione uma especialidade</option>
+                <option value="Cardiologia">Cardiologia</option>
+                <option value="Dermatologia">Dermatologia</option>
+                <option value="Clínica Geral">Clínica Geral</option>
+                <option value="Psicologia">Psicologia</option>
+                <option value="Odontologia">Odontologia</option>
+                <option value="Ortopedia">Ortopedia</option>
+                <option value="Pediatria">Pediatria</option>
+                <option value="Ginecologia">Ginecologia</option>
+                <option value="Neurologia">Neurologia</option>
+                <option value="Oftalmologia">Oftalmologia</option>
+                <option value="Otorrinolaringologia">Otorrinolaringologia</option>
+                <option value="Endocrinologia">Endocrinologia</option>
+                <option value="Urologia">Urologia</option>
+                <option value="Gastroenterologia">Gastroenterologia</option>
+                <option value="Psiquiatria">Psiquiatria</option>
+                <option value="Nutrição">Nutrição</option>
+                <option value="Fisioterapia">Fisioterapia</option>
+                <option value="Reumatologia">Reumatologia</option>
+                <option value="Oncologia">Oncologia</option>
+                <option value="Pneumologia">Pneumologia</option>
+            </select>
             <span asp-validation-for="Especialidade" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
             <label asp-for="DataHora" class="form-label"></label>
-            <input asp-for="DataHora" class="form-control" />
+            <input type="text" name="DataHora" id="DataHora" class="form-control" value="@Model.DataHora.ToString("yyyy-MM-ddTHH:mm")" data-val="true" data-val-required="A data e hora são obrigatórias." />
             <span asp-validation-for="DataHora" class="text-danger"></span>
         </div>
 
@@ -38,4 +60,17 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/pt.js"></script>
+    <script>
+        flatpickr("#DataHora", {
+            enableTime: true,
+            time_24hr: true,
+            dateFormat: "Y-m-dTH:i",
+            altInput: true,
+            altFormat: "d/m/Y H:i",
+            locale: "pt"
+        });
+    </script>
 }
